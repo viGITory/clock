@@ -1,30 +1,56 @@
 .clock {
   position: relative;
 
+  &__circle,
+  &__circle::before,
+  &__satellite,
+  &__satellite::after {
+    position: absolute;
+  }
+
+  &__circle,
+  &__satellite {
+    border-radius: 50%;
+  }
+
   &__circle {
     width: 100%;
     height: 100%;
 
-    border-radius: 50%;
     box-shadow: inset 0 -3px 10px #00bfff, 0 2px 3px #fff, 0 7px 10px #00bfff;
 
     transition: transform .5s;
 
-    &,
     &::before {
-      position: absolute;
-    }
-
-    &::before {
-      top: 50%;
-      left: 50%;
       width: 105%;
       height: 105%;
+    }
+  }
 
-      content: "";
-      background-image: linear-gradient(to bottom, #030303 50%, transparent);
+  &__circle::before,
+  &__satellite::after {
+    top: 50%;
+    left: 50%;
 
-      transform: translate(-50%, -50%);
+    content: "";
+    background-image: linear-gradient(to bottom, #030303 50%, transparent);
+
+    transform: translate(-50%, -50%);
+  }
+
+  &__satellite {
+    bottom: -200px;
+    left: 50%;
+    width: 70px;
+    height: 70px;
+
+    box-shadow: inset 0 -1px 5px #fff, 0 2px 1px #fff, 0 3px 10px #fff;
+
+    transform: translateX(-50%);
+
+    &::after {
+      width: 150%;
+      height: 150%;
     }
   }
 }
