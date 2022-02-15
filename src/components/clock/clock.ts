@@ -1,11 +1,11 @@
 export default class Clock {
   container: HTMLDivElement;
+  clockCircle!: HTMLDivElement;
   clockDigital!: HTMLDivElement;
   clockAnalog!: HTMLDivElement;
   hoursArrow!: HTMLDivElement;
   minutesArrow!: HTMLDivElement;
   secondsArrow!: HTMLDivElement;
-  clockCircle!: HTMLDivElement;
 
   constructor() {
     this.container = document.createElement('div') as HTMLDivElement;
@@ -14,9 +14,9 @@ export default class Clock {
 
   public render = (): HTMLDivElement => {
     this.container.innerHTML = `
+      <div class="clock__circle"></div>
       <div class="clock-digital"></div>
-      <div class="clock-analog">
-        <div class="clock-analog__circle"></div>
+      <div class="clock-analog hide">
         <div class="clock-analog__num clock-analog__num--12">12</div>
         <div class="clock-analog__num clock-analog__num--3">3</div>
         <div class="clock-analog__num clock-analog__num--6">6</div>
@@ -31,14 +31,14 @@ export default class Clock {
   };
 
   private getElements = (): void => {
+    this.clockCircle = this.container.querySelector(
+      '.clock__circle'
+    ) as HTMLDivElement;
     this.clockDigital = this.container.querySelector(
       '.clock-digital'
     ) as HTMLDivElement;
     this.clockAnalog = this.container.querySelector(
       '.clock-analog'
-    ) as HTMLDivElement;
-    this.clockCircle = this.container.querySelector(
-      '.clock-analog__circle'
     ) as HTMLDivElement;
     this.hoursArrow = this.container.querySelector(
       '.clock-analog__arrow--hour'
@@ -58,14 +58,12 @@ export default class Clock {
     let seconds: number | string = date.getSeconds();
 
     const secondsDegrees = (seconds / 60) * 360 + 90;
-    this.secondsArrow.style.transform = `rotate(${secondsDegrees}deg)`;
-
     const minsDegrees = (minutes / 60) * 360 + (seconds / 60) * 6 + 90;
-    this.minutesArrow.style.transform = `rotate(${minsDegrees}deg)`;
-
     const hourDegrees = (hours / 12) * 360 + (minutes / 60) * 30 + 90;
-    this.hoursArrow.style.transform = `rotate(${hourDegrees}deg)`;
 
+    this.secondsArrow.style.transform = `rotate(${secondsDegrees}deg)`;
+    this.minutesArrow.style.transform = `rotate(${minsDegrees}deg)`;
+    this.hoursArrow.style.transform = `rotate(${hourDegrees}deg)`;
     this.clockCircle.style.transform = `rotate(${hourDegrees + 90}deg)`;
 
     if (hours < 10) hours = `0${hours}`;
@@ -83,8 +81,24 @@ export default class Clock {
     setTimeout(() => this.setTime(), 1000);
   };
 
+  private hideClock = (): void => {
+    this.clockDigital.classList.toggle('hide');
+    this.clockAnalog.classList.toggle('hide');
+  };
+
+  private addListeners = (): void => {
+    this.clockDigital.addEventListener('click', () => {
+      this.hideClock();
+    });
+
+    this.clockAnalog.addEventListener('click', () => {
+      this.hideClock();
+    });
+  };
+
   public init = (): void => {
     this.getElements();
     this.setTime();
+    this.addListeners();
   };
 }

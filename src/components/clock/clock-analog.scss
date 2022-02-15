@@ -5,51 +5,12 @@
 
   color: rgba(255, 255, 255, .3);
 
-  &::after {
-    width: 2px;
-    height: 2px;
+  cursor: pointer;
+  transition: opacity .5s;
 
-    background-color: #f5f5f5;
-  }
-
-  &::after,
-  &__circle {
-    border-radius: 50%;
-  }
-
-  &,
-  &__circle {
-    position: relative;
-  }
-
-  &__circle {
-    height: 100%;
-
-    box-shadow: inset 0 -3px 10px #00bfff, 0 2px 3px #fff, 0 7px 10px #00bfff;
-    transition: transform .2s;
-
-    &::before {
-      width: 105%;
-      height: 105%;
-
-      background-image: linear-gradient(to bottom, #030303 50%, transparent);
-    }
-  }
-
-  &::after,
-  &__circle::before,
   &__num,
   &__arrow {
     position: absolute;
-  }
-
-  &::after,
-  &__circle::before {
-    top: 50%;
-    left: 50%;
-
-    content: "";
-    transform: translate(-50%, -50%);
   }
 
   &__num {

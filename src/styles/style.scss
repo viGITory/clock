@@ -1,5 +1,10 @@
 @import "./fonts";
 
 @import "../components/page/page";
+@import "../components/clock/clock";
 @import "../components/clock/clock-digital";
 @import "../components/clock/clock-analog";
+
+.hide {
+  opacity: 0;
+}
