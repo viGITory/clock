@@ -75,7 +75,7 @@ export default class Clock {
     this.clockDigital.innerHTML = `
       <span class="clock-digital__num">${`${hours}`.slice(0, 1)}</span>
       <span class="clock-digital__num">${`${hours}`.slice(1)}</span>
-      <span class="clock-digital__num clock__num--divider">:</span>
+      <span class="clock-digital__num clock-digital__num--divider">:</span>
       <span class="clock-digital__num">${`${minutes}`.slice(0, 1)}</span>
       <span class="clock-digital__num">${`${minutes}`.slice(1)}</span>
     `;
