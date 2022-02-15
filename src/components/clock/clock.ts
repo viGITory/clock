@@ -1,6 +1,6 @@
 export default class Clock {
   container: HTMLDivElement;
-  clockCircle!: HTMLDivElement;
+  clockPlanet!: HTMLDivElement;
   clockDigital!: HTMLDivElement;
   clockAnalog!: HTMLDivElement;
   hoursArrow!: HTMLDivElement;
@@ -15,18 +15,20 @@ export default class Clock {
 
   public render = (): HTMLDivElement => {
     this.container.innerHTML = `
-      <div class="clock__circle">
+      <div class="clock__planet">
         <div class="clock__satellite"></div>
       </div>
-      <div class="clock-digital"></div>
-      <div class="clock-analog hide">
-        <div class="clock-analog__num clock-analog__num--12">12</div>
-        <div class="clock-analog__num clock-analog__num--3">3</div>
-        <div class="clock-analog__num clock-analog__num--6">6</div>
-        <div class="clock-analog__num clock-analog__num--9">9</div>
-        <div class="clock-analog__arrow clock-analog__arrow--hour"></div>
-        <div class="clock-analog__arrow clock-analog__arrow--minute"></div>
-        <div class="clock-analog__arrow clock-analog__arrow--second"></div>
+      <div class="clock__digital clock-digital"></div>
+      <div class="clock__analog clock-analog hide">
+        <div class="clock-analog__inner">
+          <div class="clock-analog__num clock-analog__num--12">12</div>
+          <div class="clock-analog__num clock-analog__num--3">3</div>
+          <div class="clock-analog__num clock-analog__num--6">6</div>
+          <div class="clock-analog__num clock-analog__num--9">9</div>
+          <div class="clock-analog__arrow clock-analog__arrow--hour"></div>
+          <div class="clock-analog__arrow clock-analog__arrow--minute"></div>
+          <div class="clock-analog__arrow clock-analog__arrow--second"></div>
+        </div>
       </div>
     `;
 
@@ -34,8 +36,8 @@ export default class Clock {
   };
 
   private getElements = (): void => {
-    this.clockCircle = this.container.querySelector(
-      '.clock__circle'
+    this.clockPlanet = this.container.querySelector(
+      '.clock__planet'
     ) as HTMLDivElement;
     this.clockDigital = this.container.querySelector(
       '.clock-digital'
@@ -67,7 +69,7 @@ export default class Clock {
     this.secondsArrow.style.transform = `rotate(${secondsDegrees}deg)`;
     this.minutesArrow.style.transform = `rotate(${minsDegrees}deg)`;
     this.hoursArrow.style.transform = `rotate(${hourDegrees}deg)`;
-    this.clockCircle.style.transform = `rotate(${hourDegrees + 90}deg)`;
+    this.clockPlanet.style.transform = `rotate(${hourDegrees + 90}deg)`;
 
     if (hours < 10) hours = `0${hours}`;
     if (minutes < 10) minutes = `0${minutes}`;

@@ -1,12 +1,31 @@
 .clock-analog {
-  width: 400px;
-  min-width: 400px;
-  height: 400px;
+  width: 450px;
+  min-width: 450px;
+  height: 450px;
 
-  color: rgba(255, 255, 255, .3);
+  color: #555;
 
   cursor: pointer;
   transition: opacity .5s;
+
+  &__inner {
+    position: relative;
+    height: 100%;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 2px;
+      height: 2px;
+
+      content: "";
+      background-color: #f5f5f5;
+      border-radius: 50%;
+
+      transform: translate(-50%, -50%);
+    }
+  }
 
   &__num,
   &__arrow {
@@ -14,7 +33,7 @@
   }
 
   &__num {
-    font-size: 40px;
+    font-size: 50px;
 
     &--12,
     &--6 {
@@ -47,6 +66,7 @@
 
   &__arrow {
     top: calc(50% - 1px);
+    z-index: 1;
     height: 2px;
 
     background: linear-gradient(to right, #f5f5f5 50%, transparent 50%);
@@ -63,14 +83,10 @@
 
     &--second {
       left: 5%;
+      z-index: 0;
       width: 90%;
 
-      background:
-        linear-gradient(
-          to right,
-          rgba(255, 255, 255, .3) 50%,
-          transparent 50%
-        );
+      background: linear-gradient(to right, #555 50%, transparent 50%);
     }
   }
 }
