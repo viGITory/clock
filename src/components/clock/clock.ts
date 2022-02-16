@@ -86,18 +86,18 @@ export default class Clock {
     setTimeout(() => this.setTime(), 1000);
   };
 
-  private hideClock = (): void => {
+  private switchClock = (): void => {
     this.clockDigital.classList.toggle('hide');
     this.clockAnalog.classList.toggle('hide');
   };
 
   private addListeners = (): void => {
     this.clockDigital.addEventListener('click', () => {
-      this.hideClock();
+      this.switchClock();
     });
 
     this.clockAnalog.addEventListener('click', () => {
-      this.hideClock();
+      this.switchClock();
     });
   };
 
