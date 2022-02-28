@@ -1,5 +1,5 @@
 .clock-digital {
-  min-width: 650px;
+  display: flex;
 
   font-size: 100px;
   text-align: center;
@@ -8,8 +8,8 @@
   transition: opacity .5s;
 
   &__num {
-    display: inline-block;
-    width: 110px;
+    display: block;
+    width: 150px;
 
     line-height: 100px;
 
