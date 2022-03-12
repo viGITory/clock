@@ -6,7 +6,6 @@ export default class Clock {
   hoursArrow!: HTMLDivElement;
   minutesArrow!: HTMLDivElement;
   secondsArrow!: HTMLDivElement;
-  clockSatellite!: HTMLDivElement;
 
   constructor() {
     this.container = document.createElement('div') as HTMLDivElement;
@@ -15,9 +14,7 @@ export default class Clock {
 
   public render = (): HTMLDivElement => {
     this.container.innerHTML = `
-      <div class="clock__planet">
-        <div class="clock__satellite"></div>
-      </div>
+      <div class="clock__planet"></div>
       <div class="clock__digital clock-digital"></div>
       <div class="clock__analog clock-analog hide">
         <div class="clock-analog__inner">
